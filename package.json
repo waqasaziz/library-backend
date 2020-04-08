@@ -1,0 +1,25 @@
+{
+  "name": "library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waqasaziz/library-backend.git"
+  },
+  "author": "Waqas Aziz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/waqasaziz/library-backend/issues"
+  },
+  "homepage": "https://github.com/waqasaziz/library-backend#readme",
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "debug": "^4.1.1",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  }
+}
