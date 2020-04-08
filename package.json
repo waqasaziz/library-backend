@@ -17,9 +17,12 @@
   },
   "homepage": "https://github.com/waqasaziz/library-backend#readme",
   "dependencies": {
+    "bootstrap": "^4.4.1",
     "chalk": "^4.0.0",
     "debug": "^4.1.1",
     "express": "^4.17.1",
-    "morgan": "^1.10.0"
+    "jquery": "^3.4.1",
+    "morgan": "^1.10.0",
+    "popper.js": "^1.16.1"
   }
 }
