@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const path = require('path');
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 app.use(morgan('combined'));
 app.use(express.static(path.join(__dirname, '/public/')));
@@ -15,4 +16,4 @@ app.use('/js', express.static(path.join(__dirname, 'node_modules/popper.js/dist/
 
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'views', 'index.html')));
 
-app.listen(3000, () => debug(`Listening on port ${chalk.green(3000)}`));
+app.listen(port, () => debug(`Listening on port ${chalk.green(port)}`));
