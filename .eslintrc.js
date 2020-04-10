@@ -15,5 +15,7 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    "comma-dangle": 0,
+    "eol-last":0,
   },
 };
