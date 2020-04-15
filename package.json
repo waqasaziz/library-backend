@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "set DEBUG=app & nodemon app.js",
+    "start": "set DEBUG=app:* & nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint app.js"
   },
@@ -26,6 +26,7 @@
     "express": "^4.17.1",
     "jquery": "^3.4.1",
     "morgan": "^1.10.0",
+    "mssql": "^6.2.0",
     "nodemon": "^2.0.3",
     "popper.js": "^1.16.1"
   },
@@ -42,7 +43,12 @@
     "delay": "2500",
     "env": {
       "NODE_ENV": "development",
-      "PORT": 4000
+      "PORT": 4000,
+      "SQL_USERNAME":"app",
+      "SQL_PASSWORD":"mcpd",
+      "SQL_SERVER":"WINDELL-GAUN5AG\\SQLEXPRESS",
+      "SQL_DATABASE":"Library"
+      
     }
   }
 }

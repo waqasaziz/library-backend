@@ -1,27 +1,22 @@
 const express = require('express');
-
+const debug = require('debug')('app:bookRoutes');
+const database = require('../data/database');
 
 function router(nav) {
   const bookRouter = express.Router();
 
-  const books = [{
-    title: 'War and Peace',
-    genre: 'Historical Fiction',
-    author: 'Lev Nikolayeveich Tolstoy',
-    read: false
-  }, {
-    title: 'The Time Machine',
-    genre: 'Science Fiction',
-    author: 'H. G. Wells',
-    read: false
-  }];
-
   bookRouter.route('/')
-    .get((req, res) => res.render('bookListView', {
-      title: 'Library',
-      nav,
-      books
-    }));
+    .get((req, res) => {
+      (async function query() {
+        const result = await database('select * from books');
+
+        res.render('bookListView', {
+          title: 'Library',
+          nav,
+          books: result.recordset
+        });
+      }());
+    });
 
   bookRouter.route('/:id')
     .get((req, res) => {
@@ -29,11 +24,14 @@ function router(nav) {
         id
       } = req.params;
 
-      res.render('bookView', {
-        title: 'Library',
-        nav,
-        book: books[id]
-      });
+      (async function query(bookId) {
+        const result = await database(`select * from books where id = ${bookId}`);
+        res.render('bookView', {
+          title: 'Library',
+          nav,
+          book: result.recordset[0]
+        });
+      }(id));
     });
 
   return bookRouter;
