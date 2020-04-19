@@ -10,11 +10,13 @@ const config = {
   }
 };
 
-// run a query against the global connection pool
-async function runQuery(query) {
-  const connectionPool = await sql.connect(config);
+const db = {
 
-  return connectionPool.query(query);
-}
+  query: async (query) => {
+    const connectionPool = await sql.connect(config);
 
-module.exports = runQuery;
+    return connectionPool.query(query);
+  }
+};
+
+module.exports = db;
