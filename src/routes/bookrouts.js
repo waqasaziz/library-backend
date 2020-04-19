@@ -8,30 +8,48 @@ function router(nav) {
   bookRouter.route('/')
     .get((req, res) => {
       (async function query() {
-        const result = await database('select * from books');
+        const {
+          recordset
+        } = await database.query('select * from books');
 
         res.render('bookListView', {
           title: 'Library',
           nav,
-          books: result.recordset
+          books: recordset
         });
       }());
     });
 
   bookRouter.route('/:id')
-    .get((req, res) => {
+    .all((req, res, next) => {
       const {
         id
       } = req.params;
 
       (async function query(bookId) {
-        const result = await database(`select * from books where id = ${bookId}`);
-        res.render('bookView', {
-          title: 'Library',
-          nav,
-          book: result.recordset[0]
-        });
+        const {
+          recordset
+        } = await database.query(`select * from books where id = ${bookId}`);
+
+        [req.book] = recordset;
+
+        if (!req.book) {
+          res.render('404', {
+            title: 'Library',
+            nav,
+            book: req.book
+          });
+        } else {
+          next();
+        }
       }(id));
+    })
+    .get((req, res) => {
+      res.render('bookView', {
+        title: 'Library',
+        nav,
+        book: req.book
+      });
     });
 
   return bookRouter;

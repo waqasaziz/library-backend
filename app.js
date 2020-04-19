@@ -18,7 +18,8 @@ app.use('/js', express.static(path.join(__dirname, 'node_modules/popper.js/dist/
 app.set('views', path.join(__dirname, 'src/views'));
 app.set('view engine', 'ejs');
 
-const nav = [{
+const nav = [
+  {
     link: '/books',
     title: 'Book'
   },
